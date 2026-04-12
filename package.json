@@ -6,9 +6,8 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-     "build": "npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend",
+ "scripts": {
+    "build": "npm install --prefix Backend && npm install --prefix Frontend && npm run build --prefix Frontend",
     "start": "npm run start --prefix Backend"
   },
   "repository": {
