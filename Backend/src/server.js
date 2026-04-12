@@ -11,9 +11,9 @@ const PORT = process.env.PORT || 8000;
 app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
 if(process.env.NODE_ENV === "production"){
-    app.use(express.static(path.join(_dirname, "/Frontend/dist")));
+    app.use(express.static(path.join(_dirname, "../Frontend/dist")));
     app.get("*",(req,res)=>{
-        res.sendFile(path.join(_dirname,"/Frontend/dist/index.html"));
+        res.sendFile(path.join(_dirname,"../Frontend/dist/index.html"));
     })
 }
 app.listen(PORT, () => {
