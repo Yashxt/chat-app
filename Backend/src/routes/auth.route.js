@@ -1,12 +1,12 @@
 import express from 'express';
-import{login,signup } from  '../controller/auth.controller.js';
-
+import{login,signup,logout,updateProfile } from  '../controller/auth.controller.js';
+import {protectedRoute} from '../middleware/authMiddleware.js'
 
 
 let router = express.Router();
-router.get("/login",login)
+router.post("/login",login)
 router.post("/signup",signup)
-router.get("/logout",(req,res)=>{
-    res.send("Logout API")
-})
-export default router;  
+router.post("/logout",logout)
+router.put("/update-profile",protectedRoute,updateProfile)
+router.get("/check", protectedRoute, (req, res) => res.status(200).json(req.user));
+export default router; 

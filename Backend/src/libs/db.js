@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
-import { Env } from "./env.js";
+import { ENV } from "./env.js";
 export const connectDB = async()=>{
     try {
-      const conn =   await mongoose.connect(Env.MONGO_URL,{
+      const conn =   await mongoose.connect(ENV.MONGO_URL,{ 
     dbName: "chatify_db",
   });
         console.log("Connected to MongoDB",conn.connection.host);
