@@ -14,7 +14,7 @@ app.use(express.json())
 app.use(cookieParser());
 app.use("/api/auth",authRoute);
 app.use("/api/message",messageRoute);
-if(ENV.NODE_ENV === "production"){
+if(ENV.NODE_ENV === "development"){
     app.use(express.static(path.join(_dirname, "../Frontend/dist")));
     app.get("*",(req,res)=>{
         res.sendFile(path.join(_dirname,"../Frontend/dist/index.html"));
