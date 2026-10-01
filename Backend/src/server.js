@@ -27,8 +27,10 @@ app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
+
 if (ENV.NODE_ENV === "production") {
-  const frontendPath = path.join(__dirname, "Frontend/dist");
+  // server.js is in Backend/src -> go up 2 levels to project root
+  const frontendPath = path.join(__dirname, "../../Frontend/dist");
 
   app.use(express.static(frontendPath));
 
