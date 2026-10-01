@@ -14,17 +14,21 @@ const __dirname = path.resolve();
 const PORT = ENV.PORT || 3000;
 
 app.use(express.json({ limit: "5mb" }));
-app.use(cors({
-  origin: ENV.CLIENT_URL,
-  credentials: true
-}));
+
+app.use(
+  cors({
+    origin: ENV.CLIENT_URL,
+    credentials: true,
+  })
+);
+
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 
 if (ENV.NODE_ENV === "production") {
-  const frontendPath = path.join(__dirname, "../../Frontend/dist");
+  const frontendPath = path.join(__dirname, "Frontend/dist");
 
   app.use(express.static(frontendPath));
 
