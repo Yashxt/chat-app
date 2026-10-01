@@ -9,7 +9,7 @@ import { connectDB } from "./libs/db.js";
 import { ENV } from "./libs/env.js";
 
 const app = express();
-const __dirname = path.resolve();
+
 
 const PORT = ENV.PORT || 3000;
 
@@ -19,16 +19,19 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 if (ENV.NODE_ENV === "production") {
-  const frontendPath = path.join(__dirname, "Frontend", "dist");
+  // server.js is in Backend/src -> go up 2 levels to project root
+  const frontendPath = path.join(__dirname, "../../Frontend/dist");
 
   app.use(express.static(frontendPath));
 
   app.get("*", (_, res) => {
     res.sendFile(path.join(frontendPath, "index.html"));
   });
-}
+}  
 app.listen(PORT, () => {
   console.log("Server running on port: " + PORT);
   connectDB();
